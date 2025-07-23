@@ -13,7 +13,6 @@
 \RequirePackage{graphicx}
 \RequirePackage[inline]{enumitem}
 
-
 % --------------------------------------------------------------------------%
 % Input data
 % --------------------------------------------------------------------------%
@@ -34,6 +33,12 @@
 %\def\studentName#1{\gdef\@studentName{#1}}
 \def\satitle#1{\gdef\@satitle{#1}}\satitle{\hbox to 3cm{\hrulefill}}
 \def\saname#1{\gdef\@saname{#1}}\saname{\hbox to 3cm{\hrulefill}}
+\def\satitlea#1{\gdef\@satitlea{#1}}\satitlea{\hbox to 3cm{\hrulefill}}
+\def\sanamea#1{\gdef\@sanamea{#1}}\sanamea{\hbox to 3cm{\hrulefill}}
+\def\satitleb#1{\gdef\@satitleb{#1}}\satitleb{\hbox to 3cm{\hrulefill}}
+\def\sanameb#1{\gdef\@sanameb{#1}}\sanameb{\hbox to 3cm{\hrulefill}}
+\def\satitlec#1{\gdef\@satitlec{#1}}\satitlec{\hbox to 3cm{\hrulefill}}
+\def\sanamec#1{\gdef\@sanamec{#1}}\sanamec{\hbox to 3cm{\hrulefill}}
 \def\critictitle#1{\gdef\@critictitle{#1}}\critictitle{\hbox to 3cm{\hrulefill}}
 \def\criticname#1{\gdef\@criticname{#1}}\criticname{\hbox to 3cm{\hrulefill}}
 \def\secrname#1{\gdef\@secrname{#1}}\secrname{\hbox to 3cm{\hrulefill}}
@@ -193,6 +198,13 @@
     \typework{\cyr\cyrn\cyra\cyrp\cyri\cyrs\cyra\cyrn}
 }
 
+\DeclareOption{pract_no_p}{%
+    \worktype{\cyr\CYRO\cyrt\cyrch\cyre\cyrt\ \cyro\ \cyrp\cyrr\cyra\cyrk\cyrt%
+    \cyri\cyrk\cyre}
+    \renewcommand{\maketitle}{\MakeTitlePrNoP}
+    \typework{\cyr\cyrn\cyra\cyrp\cyri\cyrs\cyra\cyrn}
+}
+
 \DeclareOption{review}{%
     \reviewtype{\CYRO\CYRT\CYRZ\CYRERY\CYRV}
     \worktype{\cyrn\cyra\cyru\cyrch\cyrn\cyro\cyrg\cyro\ \cyrr\cyru\cyrk%
@@ -345,7 +357,7 @@
 \captionsetup[figure]{name=\CYRR\cyri\cyrs\cyru\cyrn\cyro\cyrk, labelsep=endash,
                 justification=centering, font={small}, skip=\abovecaptionskip, position=below}
 \captionsetup[table]{name=\CYRT\cyra\cyrb\cyrl\cyri\cyrc\cyra, labelsep=endash, format=plain,
-                justification=RaggedRight, singlelinecheck=false, font={small}, position=top}
+                justification=centering, singlelinecheck=false, font={small}, position=top}
 
 % --------------------------------------------------------------------------%
 % Table of contents
@@ -462,7 +474,7 @@
 {0cm}{2ex plus 1ex minus .2ex}{.4ex plus.2ex}
 
 \titleformat{\subsubsection}[block]
-{\hspace{1.25cm}\normalfont}
+{\hspace{1.25cm}\normalfont\bfseries}
 {\thesubsubsection}{1ex}{}
 \titlespacing{\subsubsection}
 {0cm}{2ex plus 1ex minus .2ex}{.4ex plus.2ex}
@@ -722,6 +734,54 @@
 \cyri\cyrya),\\[12pt]%
 \signature{\@patitle}{\@paname}
 
+\newpage
+\thispagestyle{empty}
+\vspace*{11cm}
+\CYRT\cyre\cyrm\cyra\ \cyrp\cyrr\cyra\cyrk\cyrt\cyri\cyrk\cyri:<<\@title>>
+\parindent=1.25cm
+\newpage
+}
+
+\newcommand{\MakeTitlePrNoP}
+{
+\thispagestyle{empty}
+\begin{center}
+\shapka
+\end{center}
+\vspace{0.5cm}
+\begin{flushright}
+  \parbox{7cm}{
+    \begin{flushleft}
+    \CYRU\CYRT\CYRV\CYRE\CYRR\CYRZH\CYRD\CYRA\CYRYU\\
+    \CYRZ\cyra\cyrv.\cyrk\cyra\cyrf\cyre\cyrd\cyrr\cyro\cyrishrt,\\
+    \@chtitle\\
+    \hbox to 7cm{\hrulefill\ \@chname}
+    \end{flushleft}
+  }
+\end{flushright}
+\vspace{1cm}
+\begin{center}\textbf{\MakeUppercase{\@worktype}}\end{center}
+\begin{flushleft}
+    \vspace{12pt}
+    \@studenttitle\ \@course\ \cyrk\cyru\cyrr\cyrs\cyra\ \@group\ \cyrg%
+    \cyrr\cyru\cyrp\cyrp\cyrery\ \@department\\
+    \@author\\
+    \vspace{0.5cm}
+    \cyrv\cyri\cyrd\ \cyrp\cyrr\cyra\cyrk\cyrt\cyri\cyrk\cyri: \@practtype\\
+    \cyrk\cyra\cyrf\cyre\cyrd\cyrr\cyra: \@chair\\
+    \cyrk\cyru\cyrr\cyrs: \@course\\
+    \cyrs\cyre\cyrm\cyre\cyrs\cyrt\cyrr: \@term\\
+    \cyrp\cyrr\cyro\cyrd\cyro\cyrl\cyrzh\cyri\cyrt\cyre\cyrl\cyrsftsn\cyrn%
+    \cyro\cyrs\cyrt\cyrsftsn: \@duration\ \cyrn\cyre\cyrd., \cyrs\ \@practStart\ \cyrg. \cyrp\cyro\ \@practFinish\ \cyrg.
+\end{flushleft}
+\vspace{1cm}
+\noindent
+\CYRR\cyru\cyrk\cyro\cyrv\cyro\cyrd\cyri\cyrt\cyre\cyrl\cyri\ \cyrp%
+\cyrr\cyra\cyrk\cyrt\cyri\cyrk\cyri\ \cyro\cyrt\ \cyru\cyrn\cyri\cyrv%
+\cyre\cyrr\cyrs\cyri\cyrt\cyre\cyrt\cyra,\\[12pt]%
+\signature{\@satitlea}{\@sanamea}\\[14pt]
+\signature{\@satitleb}{\@sanameb}\\[14pt]
+\signature{\@satitlec}{\@sanamec}\\[14pt]
 \newpage
 \thispagestyle{empty}
 \vspace*{11cm}
@@ -1047,3 +1107,19 @@ itemsep=0pt%\parsep
 
 \makeatother
 % --------------------------------------------------------------------------%
+
+
+\newcommand{\singleinputminted}[3][]{
+    \begin{spacing}{1}
+    \inputminted[linenos, breaklines=True, #1]{#2}{#3}
+    \end{spacing}
+}
+
+\newenvironment{singleminted}[2][]{%
+    \VerbatimEnvironment%
+    \begin{spacing}{1}%
+    \begin{minted}[style=default, #1]{#2}%
+}{%
+    \end{minted}%
+    \end{spacing}%
+}
